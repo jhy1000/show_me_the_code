@@ -10,8 +10,7 @@ def gen_series_code():
         st = ''.join([random.choice(VALID_STRING) for i in range(5)])
         return st
 
-    st = gen_five_random()
-    st = '-'.join([gen_five_random() for i in range(4)])
+    st = '-'.join([gen_five_random() for i in range(5)])
 
     return st
 
