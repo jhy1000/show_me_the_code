@@ -44,6 +44,6 @@ UPDATE series SET code=REPLACE(code,'LFBF4-IK05C-A38WB-YKV19-1J9NQ','LFBF4-IK05C
 
 
 # link
-[show-me-the-code](https://github.com/Yixiaohan/show-me-the-code)
-[RUNOOB.COM](http://www.runoob.com/mysql/mysql-tutorial.html)
+- [show-me-the-code](https://github.com/Yixiaohan/show-me-the-code)  
+- [RUNOOB.COM](http://www.runoob.com/mysql/mysql-tutorial.html)
 
