@@ -8,7 +8,7 @@ import re
 string="abcdefg  acbdgef  abcdgfe  cadbgfe"
 
 #带括号与不带括号的区别
-#不带括号
+#带括号
 regex=re.compile("((\w+)\s+\w+)")
 print(regex.findall(string))
 #输出：[('abcdefg  acbdgef', 'abcdefg'), ('abcdgfe  cadbgfe', 'abcdgfe')]
@@ -17,6 +17,7 @@ regex1=re.compile("(\w+)\s+\w+")
 print(regex1.findall(string))
 #输出：['abcdefg', 'abcdgfe']
 
+#不带括号
 regex2=re.compile("\w+\s+\w+")
 print(regex2.findall(string))
 #输出：['abcdefg  acbdgef', 'abcdgfe  cadbgfe']
