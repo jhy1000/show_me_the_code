@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.css">
+    <link rel=stylesheet href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+    </script>
+</head>
+
+<html lang="zh-CN">
+    <body>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h3 class="display-4">ToDoList</h3>
+             </div>
+        </div>
+        
+  
+
+        <div class="container border">
+            <!--div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-hasopup="true" aira-expanded="false">
+                    choice
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <form>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" value="">Id
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" value="">title
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" value="">create
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" value="">due
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" value="">status
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div-->
+
+            <table id="example" class="table table-hover table-bordered table-sm" style="width:100%">
+                <thead class="thead-dark">
+                    <tr>
+                        <td >id</td>
+                        <td >Title</td>
+                        <td >descript</td>
+                        <td >create</td>
+                        <td >Due</td>
+                        <td >status</td>
+                        <td >delete</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for id,todo in todolist %}
+                    <tr>
+                        <td >{{id}}</td>
+                        <td >{{todo.title}}</td>
+                        <td >{{todo.descript}}</td>
+                        <td >{{todo.create}}</td>
+                        <td >{{todo.due}}</td>
+                        <td >{{todo.status}}</td>
+                        <td ><button type="button" class="del-todo btn btn-sm" data={{id}}>delete</button></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+        <br/>
+        <br/>
+        <div class="container border">
+            <h2>Add new Todo</h2>
+            <form action="/add-todo/" method="post">
+
+                <div class="form-group">
+                    <label >ID</label>
+                    <input type="text" class="form-control" name="id" placeholder="please input ID">
+                </div>
+                <div class="form-group">
+                    <label >Title</label>
+                    <input type="text" class="form-control" name="title" placeholder="plase input title">
+                </div>
+                <div class="form-group">
+                    <label >Descript</label>
+                    <input type="text" class="form-control" name="descript" placeholder="plase input description">
+                </div>
+                <div class="form-group">
+                    <label >Due</label>
+                    <input type="text" class="form-control" name="due" placeholder="plase input due time">
+                </div>
+                <div class="form-group">
+                    <label >Status</label>
+                    <input type="text" class="form-control" name="status" placeholder="plase input status">
+                </div>
+                <button type="submit" class="add-todo btn btn-default">add todo</button>
+            </form>
+        </div>
+        <br/>
+        <br/>
+
+
+        <script>
+            $('.del-todo').on('click', function(){
+                var todo_id = $(this).attr('data');
+                $.ajax({
+                    url: '/del_todo?todo_id='+todo_id,
+                    type: 'DELETE',
+                    success: function(result) {
+                    }
+                });
+                $(this).parent().parent().hide()
+            })
+        </script>
+
+    </body>
+
+
+</html>
